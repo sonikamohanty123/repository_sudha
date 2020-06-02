@@ -15,7 +15,6 @@ import org.testng.annotations.Test;
 
 public class rt1 {
 WebDriver driver;
-private String address;
 	
 	@BeforeTest
 	public void set_up()
@@ -29,7 +28,7 @@ private String address;
 	@AfterTest
 	public void aftertest()
 	{
-		//driver.close();
+		driver.quit();
 	}
 	@Test
 	public void aboutus_chn() throws InterruptedException
@@ -56,6 +55,18 @@ private String address;
 		
 		String address=driver.findElement(By.id("demo3")).getText();
 		System.out.println(address);
+		
+	  String line1=	driver.findElement(By.xpath("//*[@id=\"demo3\"]/b/p[1]")).getText();
+	  Assert.assertEquals(line1, "Testme Inc.");
+	  String line2=driver.findElement(By.xpath("//*[@id=\"demo3\"]/b/p[2]")).getText();
+	  Assert.assertEquals(line2, "123, Velachery Main Road");
+	  String line3=driver.findElement(By.xpath("//*[@id=\"demo3\"]/b/p[3]")).getText();
+	  Assert.assertTrue(line3.contains("Chennai"));
+	  String line4=driver.findElement(By.xpath("//*[@id=\"demo3\"]/b/p[4]")).getText();
+	  Assert.assertEquals(line4, "Mobile: +91 9898912345");
+	  String line5=driver.findElement(By.xpath("//*[@id=\"demo3\"]/b/p[5]")).getText();
+	  Assert.assertEquals(line5, "Fax: 84554323");
+	  
 	
 		
 		Assert.assertTrue(address.contains("Chennai"));
